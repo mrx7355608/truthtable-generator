@@ -12,7 +12,9 @@ let a = [];
 let b = [];
 let c = [];
 let d = [];
-const solve = [];
+// Array containing ques, with replaced values and operators
+// E.g: A.B + C ==> 0 && 1 || 0
+const solve = []; 
 
 function decimalToBinary(number) {
     const binary = number.toString(2).padStart(inputs.length, '0');
@@ -32,13 +34,16 @@ for (i = 0; i < totalCombinations; i++) {
     }
 }
 
-// Replace all operators
+// Replace "." with && operator
 let quesWitReplacedOperators =  ques.replace(/\./g, " && ")
+// Replace "+" with || operator
 quesWitReplacedOperators =  quesWitReplacedOperators.replace(/\+/g, " || ")
 
 
 // Replace input values
 for (l = 0 ;l < totalCombinations; l++) {
+    // It replaces A, B, C and D (in the ques) with their 
+    // respective values (0s and 1s) stored in arrays a, b, c, d
     let qq = quesWitReplacedOperators.replace(/A/g, a[l]);
     qq = qq.replace(/B/g, b[l]);
 
@@ -55,9 +60,15 @@ console.log("-----------------------------------------")
 console.log("|    A    |    B    |    C    |    X    |")
 console.log("-----------------------------------------")
 
-// Print the solved value
+// Print the solved value along with values of A, B, C and D
+// ------------------------------------------
+// |    A   |   B   |   C   |   D   |   X   |
+// ------------------------------------------
+// |    0   |   0   |   0   |   0   |   0   |
+// |    0   |   0   |   0   |   1   |   1   |
+// ...
 for (m = 0; m < solve.length; m++) {
-    let ans = eval(solve[m]) ? "1" : "0";
+    let ans = eval(solve[m]) == true ? "1" : "0";
     const pr = `|    ${a[m]}    |    ${b[m]}    |    ${c[m]}    |    ${ans}    |`;
     process.stdout.write(pr);
     console.log("\n")
