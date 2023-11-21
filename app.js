@@ -1,4 +1,4 @@
-const ques = "A+B"
+const ques = "!(!(A + B.C) + !(A.!B))"
 
 
 // ############################
@@ -83,6 +83,31 @@ for (l = 0 ;l < totalCombinations; l++) {
 // ############################
 //           SOLVE
 // ############################
+
+// Print table heading
+switch (inputs.length) {
+    case 1:
+        console.log("---------------------")
+        console.log("|    A    |    X    |");
+        console.log("---------------------")
+        break;
+    case 2:
+        console.log("-------------------------------")
+        console.log("|    A    |    B    |    X    |") 
+        console.log("-------------------------------")
+        break;
+    case 3:
+        console.log("-----------------------------------------")
+        console.log("|    A    |    B    |    C    |    X    |") 
+        console.log("-----------------------------------------")
+        break;
+    case 4:
+        console.log("---------------------------------------------------")
+        console.log("|    A    |    B    |    C    |    D    |    X    |") 
+        console.log("---------------------------------------------------")
+        break;
+
+}
 
 // Print the final answer along with values 
 // of A, B, C and D in a table format
