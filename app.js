@@ -1,4 +1,9 @@
-const ques = "A.B + A.C"
+const ques = "A+B"
+
+
+// ############################
+//   STORE TRUTH TABLE VALUES
+// ############################
 
 // Get total number of inputs & combinations
 const inputsRegex = /[a-z]/ig;
@@ -7,14 +12,12 @@ const inputsSet = new Set(inputsArr);
 const inputs = Array.from(inputsSet);
 const totalCombinations = 2 ** inputs.length;
 
-// Create a truth table for all combinations
+// Arrays to store truth table's input
+// values A, B, C, D
 let a = [];
 let b = [];
 let c = [];
 let d = [];
-// Array containing ques, with replaced values and operators
-// E.g: A.B + C ==> 0 && 1 || 0
-const solve = []; 
 
 function decimalToBinary(number) {
     const binary = number.toString(2).padStart(inputs.length, '0');
@@ -25,14 +28,24 @@ for (i = 0; i < totalCombinations; i++) {
     const binaryNumber = decimalToBinary(i);
     const splitBinaryNumber = binaryNumber.split("");
     a.push(splitBinaryNumber[0]);
-    b.push(splitBinaryNumber[1]);
 
-    if (inputs.length === 3) {
+    if (inputs.length === 2) {
+        b.push(splitBinaryNumber[1]);
+    }
+    else if (inputs.length === 3) {
+        b.push(splitBinaryNumber[1]);
         c.push(splitBinaryNumber[2]);
     } else if (inputs.length === 4) {
+        b.push(splitBinaryNumber[1]);
+        c.push(splitBinaryNumber[2]);
         d.push(splitBinaryNumber[3]);
     }
 }
+
+// ############################
+//      REPLACE OPERATORS
+// ############################
+// EXAMPLE: A.B + C --> A && B || C
 
 // Replace "." with && operator
 let quesWitReplacedOperators =  ques.replace(/\./g, " && ")
@@ -40,38 +53,56 @@ let quesWitReplacedOperators =  ques.replace(/\./g, " && ")
 quesWitReplacedOperators =  quesWitReplacedOperators.replace(/\+/g, " || ")
 
 
+// ############################
+//        REPLACE VALUES
+// ############################
+// EXAMPLE: A.B + C --> 0 && 1 || 0
+
+// Array to store replaced values and operators
+const solve = []; 
+
 // Replace input values
 for (l = 0 ;l < totalCombinations; l++) {
-    // It replaces A, B, C and D (in the ques) with their 
-    // respective values (0s and 1s) stored in arrays a, b, c, d
-    let qq = quesWitReplacedOperators.replace(/A/g, a[l]);
-    qq = qq.replace(/B/g, b[l]);
+    // Here, "a" is the array that have values of A
+    let qq = quesWitReplacedOperators.replace(/A/g, a[l]); 
 
-    if (inputs.length === 3) {
+    if (inputs.length === 2) {
+        qq = qq.replace(/B/g, b[l]);
+    } else if (inputs.length === 3) {
+        qq = qq.replace(/B/g, b[l]);
         qq = qq.replace(/C/g, c[l]);
     } else if (inputs.length === 4) {
+        qq = qq.replace(/B/g, b[l]);
+        qq = qq.replace(/C/g, c[l]);
         qq = qq.replace(/D/g, d[l]);
     }
     solve.push(qq)
 }
 
-console.log(`QUESTION: ${ques}`)
-console.log("-----------------------------------------")
-console.log("|    A    |    B    |    C    |    X    |")
-console.log("-----------------------------------------")
 
-// Print the solved value along with values of A, B, C and D
-// ------------------------------------------
-// |    A   |   B   |   C   |   D   |   X   |
-// ------------------------------------------
-// |    0   |   0   |   0   |   0   |   0   |
-// |    0   |   0   |   0   |   1   |   1   |
-// ...
+// ############################
+//           SOLVE
+// ############################
+
+// Print the final answer along with values 
+// of A, B, C and D in a table format
 for (m = 0; m < solve.length; m++) {
     let ans = eval(solve[m]) == true ? "1" : "0";
-    const pr = `|    ${a[m]}    |    ${b[m]}    |    ${c[m]}    |    ${ans}    |`;
+    const valueOfA = a[m];
+    const valueOfB = b[m];
+    const valueOfC = c[m];
+    const valueOfD = d[m];
+    let pr = `|    ${valueOfA}    |    ${ans}    |`;
+    
+    if (inputs.length === 2) {
+        pr = `|    ${valueOfA}    |    ${valueOfB}    |    ${ans}    |`
+    }
+    else if (inputs.length === 3) {
+        pr = `|    ${valueOfA}    |    ${valueOfB}    |    ${valueOfC}    |    ${ans}    |`;
+    } else if (inputs.length === 4) {
+        pr = `|    ${valueOfA}    |    ${valueOfB}    |    ${valueOfC}    |    ${valueOfD}    |    ${ans}    |`;
+    }
     process.stdout.write(pr);
     console.log("\n")
 }
-
 
