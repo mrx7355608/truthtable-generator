@@ -1,52 +1,5 @@
 const ques = "!(!(A + B.C) + !(A.!B))"
 
-
-// ############################
-//   STORE TRUTH TABLE VALUES
-// ############################
-
-// Get total number of inputs & combinations
-const inputsRegex = /[a-z]/ig;
-const inputsArr = ques.match(inputsRegex);
-const inputsSet = new Set(inputsArr);
-const inputs = Array.from(inputsSet);
-const totalCombinations = 2 ** inputs.length;
-
-// Arrays to store truth table's input
-// values A, B, C, D
-let a = [];
-let b = [];
-let c = [];
-let d = [];
-
-function decimalToBinary(number) {
-    const binary = number.toString(2).padStart(inputs.length, '0');
-    return binary;
-}
-
-for (i = 0; i < totalCombinations; i++) {
-    const binaryNumber = decimalToBinary(i);
-    const splitBinaryNumber = binaryNumber.split("");
-    a.push(splitBinaryNumber[0]);
-
-    if (inputs.length === 2) {
-        b.push(splitBinaryNumber[1]);
-    }
-    else if (inputs.length === 3) {
-        b.push(splitBinaryNumber[1]);
-        c.push(splitBinaryNumber[2]);
-    } else if (inputs.length === 4) {
-        b.push(splitBinaryNumber[1]);
-        c.push(splitBinaryNumber[2]);
-        d.push(splitBinaryNumber[3]);
-    }
-}
-
-// ############################
-//      REPLACE OPERATORS
-// ############################
-// EXAMPLE: A.B + C --> A && B || C
-
 // Replace "." with && operator
 let quesWitReplacedOperators =  ques.replace(/\./g, " && ")
 // Replace "+" with || operator
