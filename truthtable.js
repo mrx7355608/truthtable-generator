@@ -23,8 +23,9 @@ class TruthTable {
 
 
     createBinaryCombinations() {
+        const inputs = this.getTotalInputs();
         for (let i = 0; i < this.getTotalCombintions(); i++) {
-            const binaryNumber = this.decimalToBinary(i, inputs);
+            const binaryNumber = this.decimalToBinary(i, inputs)
             const splitBinaryNumber = binaryNumber.split("");
             this.a.push(splitBinaryNumber[0]);
 
@@ -40,6 +41,7 @@ class TruthTable {
                 this.d.push(splitBinaryNumber[3]);
             }
         }
+        return [this.a, this.b, this.c, this.d]
     }
 
     decimalToBinary(number, totalInputs) {
@@ -47,3 +49,5 @@ class TruthTable {
         return binary;
     }
 }
+
+export default TruthTable;

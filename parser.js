@@ -8,6 +8,7 @@ class Parser {
     parse() {
         const parts = this.eq.match(this.regex);
         this.partsOfQues.push(...parts, this.eq);
+        return this.partsOfQues
     }
 
     // TODO: add a clean function for removing
@@ -15,4 +16,4 @@ class Parser {
 
 }
 
-const p = new Parser("!(A + B.C) + !(A.!B)");
+export default Parser;

@@ -1,4 +1,12 @@
-const ques = "!(!(A + B.C) + !(A.!B))"
+import Parser from "./parser.js";
+import TruthTable from "./truthtable.js";
+
+const equation = "!(A + B.C) + !(A.!B)"
+const parser = new Parser(equation)
+const truthTableValues = new TruthTable(equation)
+
+const parsedEquation = parser.parse();
+const values = truthTableValues.createBinaryCombinations();
 
 // Replace "." with && operator
 let quesWitReplacedOperators =  ques.replace(/\./g, " && ")
