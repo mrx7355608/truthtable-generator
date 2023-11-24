@@ -12,5 +12,7 @@
     "parser": "nodemon parser.js",
     "start": "node app.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "table": "^6.8.1"
+  }
 }

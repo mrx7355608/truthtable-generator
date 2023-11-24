@@ -11,7 +11,7 @@ class ValueReplacer {
         const totalParts = this.parsedEquation.length;
         const replacedOperators = []
         for (let i = 0; i < totalParts; i++) {
-            let cp = this.parsedEquation[0];
+            let cp = this.parsedEquation[i];
             cp = cp.replace(/\./g, " && ")
             cp = cp.replace(/\+/g, " || ")
             replacedOperators.push(cp)
@@ -24,7 +24,7 @@ class ValueReplacer {
         const solvables = [];
         const totalParts = this.parsedEquation.length;
         const replacedOperatorsArray = this.replaceOperators();
-
+        
         for (let i = 0; i < totalParts; i++) {
             for  (let j = 0; j < totalCombinations; j++) {
                 let currentPart = replacedOperatorsArray[i].replace(/A/g, this.a[j])
