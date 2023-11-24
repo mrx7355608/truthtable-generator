@@ -1,9 +1,12 @@
 class Solver {
-    constructor(A, B, C, D, solvables) {
-        this.a = A;
-        this.b = B;
-        this.c = C;
-        this.d = D;
+    constructor(parsedEquation, solvables) {
         this.solvables = solvables;
+        this.parsedEquation = parsedEquation;
+    }
+
+    solve() {
+        const answers = [];
     }
 }
+
+export default Solver;
