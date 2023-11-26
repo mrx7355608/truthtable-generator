@@ -25,7 +25,6 @@ export default function main(expression) {
 
     // Display values
     const display = Display(expression, totalInputs);
-    display.printTableHeader();
     display.printFinalAnswers(finalAnswersArray)
 
     return finalAnswersArray;
