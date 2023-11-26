@@ -50,3 +50,17 @@ form#input-box {
     background: #6a2eff;
     color: white;
 }
+
+table#output-table {
+    table-layout: fixed;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 2rem auto;
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 20px;
+    border: 1px solid black;
+}

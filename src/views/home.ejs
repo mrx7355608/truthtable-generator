@@ -21,6 +21,30 @@
             <input name='expression' type="text" placeholder="Enter expression" />
             <button type="submit">Generate</button>
         </form>
+
+        <!-- <table> -->
+        <!--     <% for (let i = 0; i < finalAnswersArray.length; i++) { %> -->
+        <!--         <tr> -->
+        <!--             <td><%= finalAnswersArray[i] %></td> -->
+        <!--         </tr>     -->
+        <!--         <% } %> -->
+        <!-- </table> -->
+
+        <table id="output-table">
+            <tr>
+                    <th>A</th><th>B</th><th>X</th>
+            </tr>
+
+            <% for (var i = 0; i < finalAnswersArray.length; i++) { %>
+                <tr>
+                    <td><%= finalAnswersArray[i].a %></td>
+                    <td><%= finalAnswersArray[i].b %></td>
+                    <td><%= finalAnswersArray[i].answer %></td>
+                </tr>    
+                <% } %>
+        </table>
+
+
     </body>
 </html>
 

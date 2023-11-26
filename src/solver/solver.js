@@ -20,9 +20,7 @@ const Solver = (a,b,c,d,solvables) => {
     }
 
     const solve = (totalInputs) => {
-        const tableHeader = getTableHeader(totalInputs);
         const finalAnswersArray = [];
-        finalAnswersArray.push(tableHeader);
 
         for (let m = 0; m < solvables.length; m++) {
             let ans = eval(solvables[m]) == true ? "1" : "0";
@@ -30,19 +28,37 @@ const Solver = (a,b,c,d,solvables) => {
             const valueOfB = b[m];
             const valueOfC = c[m];
             const valueOfD = d[m];
-            let pr = `|    ${valueOfA}    |    ${ans}    |`;
+            let pr = {
+                a: valueOfA,
+                answer: ans
+            }
 
             if (totalInputs === 2) {
-                pr = `|    ${valueOfA}    |    ${valueOfB}    |    ${ans}    |`
+                pr = {
+                    a: valueOfA,
+                    b: valueOfB,
+                    answer: ans
+                }
             }
             else if (totalInputs === 3) {
-                pr = `|    ${valueOfA}    |    ${valueOfB}    |    ${valueOfC}    |    ${ans}    |`;
+                pr = {
+                    a: valueOfA,
+                    b: valueOfB,
+                    c: valueOfC,
+                    answer: ans
+                }
             } else if (totalInputs === 4) {
-                pr = `|    ${valueOfA}    |    ${valueOfB}    |    ${valueOfC}    |    ${valueOfD}    |    ${ans}    |`;
+                pr = {
+                    a: valueOfA,
+                    b: valueOfB,
+                    c: valueOfC,
+                    d: valueOfD,
+                    answer: ans
+                }
             }
             finalAnswersArray.push(pr);
         }
-        return finalAnswersArray;
+        return { finalAnswersArray, totalInputs };
     }
     return { solve }
 }

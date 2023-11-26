@@ -26,8 +26,8 @@ app.get("/", (_req, res) => {
 })
 app.post("/", (req, res) => {
     const { expression } = req.body;
-    main(expression);
-    return res.render("home", { title: 'Truth Table Generator' });
+    const { finalAnswersArray, totalInputs } = main(expression);
+    return res.render("home", { title: 'Truth Table Generator', finalAnswersArray, totalInputs });
 })
 
 app.listen(port, () => {
