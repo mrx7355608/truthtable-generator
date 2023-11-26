@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-</head>
-<body>
-  <h1><%= title %></h1>
-  <p>Welcome to my Express app with EJS templating!</p>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/media/styles.css" />
+        <title><%= title %></title>
+    </head>
+    <body>
+        <h1><%= title %></h1>
+        <div id='note'>
+            <h3>NOTE</h3>
+            <ul>
+                <li>Only supports AND, OR, NOT operations</li>
+                <li>Add "." (dot) where there is an AND operation</li>
+                <li>Use "+" (plus) for OR operations</li>
+                <li>Use "!" (exclamation) for NOT operations</li>
+            </ul>
+        </div>
+        <form id="input-box" action="/" method="post">
+            <input name='expression' type="text" placeholder="Enter expression" />
+            <button type="submit">Generate</button>
+        </form>
+    </body>
 </html>
 
