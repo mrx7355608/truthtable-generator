@@ -25,10 +25,15 @@ const Display = (expression, totalInputs) => {
                 break;
 
         }
-
     }
 
-    return { printTableHeader };
+    const printFinalAnswers = (finalAnswersArray) => {
+        for (let i = 0; i < finalAnswersArray.length; i++) {
+            console.log(finalAnswersArray[i]);
+        }
+    }
+
+    return { printTableHeader, printFinalAnswers };
 }
 
 export default Display;

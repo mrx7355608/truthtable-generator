@@ -1,7 +1,7 @@
 const Solver = (a,b,c,d,solvables) => {
     const solve = (totalInputs) => {
-        // Print the final answer along with values 
-        // of A, B, C and D in a table format
+        const finalAnswersArray = [];
+
         for (let m = 0; m < solvables.length; m++) {
             let ans = eval(solvables[m]) == true ? "1" : "0";
             const valueOfA = a[m];
@@ -18,9 +18,9 @@ const Solver = (a,b,c,d,solvables) => {
             } else if (totalInputs === 4) {
                 pr = `|    ${valueOfA}    |    ${valueOfB}    |    ${valueOfC}    |    ${valueOfD}    |    ${ans}    |`;
             }
-            process.stdout.write(pr);
-            console.log("\n")
+            finalAnswersArray.push(pr);
         }
+        return finalAnswersArray;
     }
     return { solve }
 }
