@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors"
+import morgan from "morgan"
 import { __dirname } from "./utils/dirName.js";
 import main from "./solver/main.js";
 
@@ -10,6 +12,10 @@ const port = 3000;
 // #######################
 // TODO: add morgan, helmet and hpp middlewares
 app.use(express.json());
+app.use(morgan("dev"))
+app.use(cors({
+    origin: "http://localhost:5173"
+}))
 app.use(express.urlencoded({ extended: false }));
 app.use("/media", express.static(`${__dirname}/../public`))
 
@@ -20,14 +26,10 @@ app.set("views", `${__dirname}/../views`);
 // #######################
 //         ROUTES
 // #######################
-
-app.get("/", (_req, res) => {
-    return res.render("home", { title: 'Truth Table Generator' });
-})
-app.post("/", (req, res) => {
+app.post("/api/v1/solve-expression", (req, res) => {
     const { expression } = req.body;
-    const { finalAnswersArray, totalInputs } = main(expression);
-    return res.render("home", { title: 'Truth Table Generator', finalAnswersArray, totalInputs });
+    const responseObject = main(expression);
+    return res.status(200).json(responseObject)
 })
 
 app.listen(port, () => {
