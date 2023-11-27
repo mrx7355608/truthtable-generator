@@ -24,7 +24,7 @@ class Parser {
 
     parse(expression) {
         // Validate the equation
-        this.validate(expression);
+        // this.validate(expression);
 
         // If expression does have any brackets, return it as it is.
         const bracketRegex = /[\(\)]/
