@@ -1,7 +1,7 @@
 class Parser {
     constructor() {
         this.parsedExpression = [];
-        this.regex = /\+(?![^(]*\))/
+        this.regex = /\(([^)]+)\)/g;
     }
 
     validate(expression) {
@@ -33,15 +33,11 @@ class Parser {
         }
 
         // Otherwise, parse the expression
-        const parts = expression.split(this.regex);
+        const parts = expression.match(this.regex);
         this.parsedExpression.push(...parts, expression);
 
         return this.parsedExpression
     }
-
-    // TODO: add a clean function for removing
-    // extra brackets that occur during parsing
-
 }
 
 export default Parser;
