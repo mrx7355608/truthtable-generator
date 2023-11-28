@@ -35,7 +35,7 @@ yarn dev
 
 ## Documentation
 
-#### :space_invader: Solving Expressions
+### :space_invader: Solving Expressions
 
 The endpoint for solving expressions is:
 ```http
