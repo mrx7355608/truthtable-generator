@@ -1,10 +1,8 @@
-class Parser {
-    constructor() {
-        this.parsedExpression = [];
-        this.regex = /\(([^)]+)\)/g;
-    }
+const Parser = (expression) => {
+    const parsedExpression = [];
+    const regex = /\(([^)]+)\)/g;
 
-    validate(expression) {
+    const validate = () => {
         const invalidInputsRegex = /[^!.()+ \[\]\{\}ABCD]/;
 
         if (!expression) {
@@ -22,9 +20,9 @@ class Parser {
         }
     }
 
-    parse(expression) {
+    const parse = () => {
         // Validate the equation
-        // this.validate(expression);
+        validate();
 
         // If expression does have any brackets, return it as it is.
         const bracketRegex = /[\(\)]/
@@ -33,11 +31,13 @@ class Parser {
         }
 
         // Otherwise, parse the expression
-        const parts = expression.match(this.regex);
-        this.parsedExpression.push(...parts, expression);
+        const parts = expression.match(regex);
+        parsedExpression.push(...parts, expression);
 
-        return this.parsedExpression
+        return parsedExpression;
     }
+
+    return { parse };
 }
 
 export default Parser;

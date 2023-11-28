@@ -3,17 +3,16 @@ import Solver from "./solver.js";
 import TruthTable from "./truthtable.js";
 import ValueReplacer from "./valueReplacer.js";
 
-const equation = "!(A.B)"
-const parser = new Parser(equation)
-const truthTableValues = new TruthTable(equation)
+const expression = "A.B + B.(B+C) + (A.D)"
+const parser = Parser(expression)
+const truthTable = TruthTable(expression)
 
-const parsedEquation = parser.parse();
-const values = truthTableValues.createBinaryCombinations();
-console.log(parsedEquation)
+const parsedExpression = parser.parse();
+const values = truthTable.createBinaryCombinations();
 
-const valueReplacer = new ValueReplacer(parsedEquation, values[0], values[1], values[2], values[3]);
-const totalCombinations = truthTableValues.getTotalCombintions();
+const valueReplacer = ValueReplacer(parsedExpression, values[0], values[1], values[2], values[3]);
+const totalCombinations = truthTable.getTotalCombintions();
 const solvables = valueReplacer.replaceValues(totalCombinations);
 
-const solver = new Solver(parsedEquation, solvables)
-solver.solve(totalCombinations)
+const solver = Solver(parsedExpression, solvables)
+const answers = solver.solve(totalCombinations)
