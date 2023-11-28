@@ -35,7 +35,7 @@ class TruthTable {
             else if (inputs === 3) {
                 this.b.push(splitBinaryNumber[1]);
                 this.c.push(splitBinaryNumber[2]);
-            } else if (inputs.length === 4) {
+            } else if (inputs === 4) {
                 this.b.push(splitBinaryNumber[1]);
                 this.c.push(splitBinaryNumber[2]);
                 this.d.push(splitBinaryNumber[3]);
