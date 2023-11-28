@@ -51,7 +51,6 @@ API expects a json data that contains an `expression` key
 ```
 The response is an array that contains values of a,b,c,d and expression answer according to those values
 ```json
-// EXPRESSION: A+B
 [
     {
         "a": 0,
@@ -62,7 +61,6 @@ The response is an array that contains values of a,b,c,d and expression answer a
         "a": 0,
         "b": 1,
         "answer": 1,
-    },
-    // ...
+    }
 ]
 ```
