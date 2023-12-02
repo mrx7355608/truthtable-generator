@@ -17,5 +17,12 @@ export const main = (expression) => {
 
     const solver = Solver(parsedExpression, solvables)
     const answers = solver.solve(totalCombinations)
-    return answers;
+    const data = {
+        a: values[0],
+        b: values[1].length > 0 ? values[1] : undefined,
+        c: values[2].length > 0 ? values[2] : undefined,
+        d: values[3].length > 0 ? values[3] : undefined,
+        answers
+    }
+    return data;
 }
