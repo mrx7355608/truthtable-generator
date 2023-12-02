@@ -1,0 +1,66 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'sans-serif';
+}
+
+h1 {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+#note {
+    border-radius: 8px;
+    border: 2px solid #6a2eff;
+    padding: 30px;
+    background: #cbc3e3;
+    max-width: 400px;
+    margin: auto;
+}
+
+#note li {
+    margin: 5px 0px;
+    color: #1d1d1d;
+}
+
+
+form#input-box {
+    max-width: 450px;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#input-box input {
+    border-radius: 8px;
+    padding: 12px;
+    outline: none;
+    font-weight: 500;
+    border: 2px solid lightgray;
+    flex: 2;
+}
+
+#input-box button {
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background: #6a2eff;
+    color: white;
+}
+
+table#output-table {
+    table-layout: fixed;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 2rem auto;
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 20px;
+    border: 1px solid black;
+}
