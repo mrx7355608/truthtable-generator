@@ -27,7 +27,7 @@ const Parser = (expression) => {
         // If expression does have any brackets, return it as it is.
         const bracketRegex = /[\(\)]/
         if (!bracketRegex.test(expression)) {
-            return expression
+            return [ expression ]
         }
 
         // Otherwise, parse the expression
