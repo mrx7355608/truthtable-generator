@@ -16,3 +16,4 @@ const solvables = valueReplacer.replaceValues(totalCombinations);
 
 const solver = Solver(parsedExpression, solvables)
 const answers = solver.solve(totalCombinations)
+console.log(answers)
