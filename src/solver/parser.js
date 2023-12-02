@@ -1,21 +1,43 @@
 const Parser = (expression) => {
-    let totalInputs;
+    const parsedExpression = [];
+    const regex = /\(([^)]+)\)/g;
 
-    const getInputsFromExpr = () => {
-        const inputsRegex = /[a-z]/ig;
-        const inputsArr = expression.match(inputsRegex);
-        const inputsSet = new Set(inputsArr);
-        const inputs = Array.from(inputsSet);
-        totalInputs = inputs.length;
-        return totalInputs;
+    const validate = () => {
+        const invalidInputsRegex = /[^!.()+ \[\]\{\}ABCD]/;
+
+        if (!expression) {
+            throw new Error("Expression is missing")
+        } 
+
+        expression = expression.trim(); // Remove spaces
+
+        if (expression.length < 1) {
+            throw new Error("Cannot parse empty expression")
+        }
+
+        if (invalidInputsRegex.test(expression)) {
+            throw new Error("Invalid expression")
+        }
     }
 
-    const getTotalCombinations = () => 2 ** totalInputs
+    const parse = () => {
+        // Validate the equation
+        validate();
 
-    return {
-        getInputsFromExpr,
-        getTotalCombinations
+        // If expression does have any brackets, return it as it is.
+        const bracketRegex = /[\(\)]/
+        if (!bracketRegex.test(expression)) {
+            return expression
+        }
+
+        // Otherwise, parse the expression
+        const parts = expression.match(regex);
+        parsedExpression.push(...parts, expression);
+
+        return parsedExpression;
     }
+
+    return { parse };
 }
 
 export default Parser;

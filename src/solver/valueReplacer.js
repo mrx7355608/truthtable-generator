@@ -1,32 +1,38 @@
-const ValueAndOperatorsReplacer = (a, b, c, d, expression) => {
-    let exprWitReplacedOperators;
+const ValueReplacer = (parsedEquationArray, A, B, C, D) => {
+        const parsedEquation = parsedEquationArray;
+        const a = A;
+        const b = B;
+        const c = C;
+        const d = D;
 
     const replaceOperators = () => {
-        // Replace "." with && operator
-        exprWitReplacedOperators =  expression.replace(/\./g, " && ")
-        // Replace "+" with || operator
-        exprWitReplacedOperators =  exprWitReplacedOperators.replace(/\+/g, " || ")
-        return exprWitReplacedOperators;
+        const totalParts = parsedEquation.length;
+        const replacedOperators = []
+        for (let i = 0; i < totalParts; i++) {
+            let cp = parsedEquation[i];
+            cp = cp.replace(/\./g, " && ")
+            cp = cp.replace(/\+/g, " || ")
+            replacedOperators.push(cp)
+        }
+
+        return replacedOperators;
     }
 
-    const replaceValues = (totalInputs, totalCombinations) => {
-        const solvables = []; 
-        // Replace input values
-        for (let l = 0 ;l < totalCombinations; l++) {
-            // Here, "a" is the array that have values of A
-            let qq = exprWitReplacedOperators.replace(/A/g, a[l]); 
-
-            if (totalInputs === 2) {
-                qq = qq.replace(/B/g, b[l]);
-            } else if (totalInputs === 3) {
-                qq = qq.replace(/B/g, b[l]);
-                qq = qq.replace(/C/g, c[l]);
-            } else if (totalInputs === 4) {
-                qq = qq.replace(/B/g, b[l]);
-                qq = qq.replace(/C/g, c[l]);
-                qq = qq.replace(/D/g, d[l]);
+    const replaceValues = (totalCombinations) => {
+        const solvables = [];
+        const totalParts = parsedEquation.length;
+        const replacedOperatorsArray = replaceOperators();
+        
+        for (let i = 0; i < totalParts; i++) {
+            for  (let j = 0; j < totalCombinations; j++) {
+                let currentPart = replacedOperatorsArray[i].replace(/A/g, a[j])
+                currentPart = currentPart.replace(/B/g, b[j])
+                currentPart = currentPart.replace(/C/g, c[j])
+                currentPart = currentPart.replace(/D/g, d[j])
+                const ans = {};
+                ans[parsedEquation[i]] = currentPart;
+                solvables.push(ans)
             }
-            solvables.push(qq)
         }
         return solvables;
     }
@@ -37,4 +43,4 @@ const ValueAndOperatorsReplacer = (a, b, c, d, expression) => {
     }
 }
 
-export default ValueAndOperatorsReplacer;
+export default ValueReplacer

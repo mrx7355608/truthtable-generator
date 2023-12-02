@@ -1,31 +1,19 @@
 import Parser from "./parser.js";
-import TruthTableGenerator from "./truthtable.js";
-import ValueAndOperatorsReplacer from "./valueReplacer.js";
-import Display from "./display.js"
 import Solver from "./solver.js";
+import TruthTable from "./truthtable.js";
+import ValueReplacer from "./valueReplacer.js";
 
-export default function main(expression) {
-    // Parsing (sasti wali > ~ <)
-    const parser = Parser(expression);
-    const totalInputs = parser.getInputsFromExpr()
-    const totalCombinations = parser.getTotalCombinations();
+const expression = "A.B + B.(B+C) + (A.D)"
+const parser = Parser(expression)
+const truthTable = TruthTable(expression)
 
-    // Generating truth table values
-    const truthTableGen = TruthTableGenerator(totalInputs, totalCombinations)
-    const { a, b, c, d } = truthTableGen.createTruthTableValues()
+const parsedExpression = parser.parse();
+const values = truthTable.createBinaryCombinations();
 
-    // Replace values and operators of given expression
-    const replacer = ValueAndOperatorsReplacer(a,b,c,d, expression)
-    replacer.replaceOperators()
-    const solvables = replacer.replaceValues(totalInputs, totalCombinations);
+const valueReplacer = ValueReplacer(parsedExpression, values[0], values[1], values[2], values[3]);
+const totalCombinations = truthTable.getTotalCombintions();
+const solvables = valueReplacer.replaceValues(totalCombinations);
 
-    // Solve
-    const solver = Solver(a,b,c,d,solvables);
-    const finalAnswersArray = solver.solve(totalInputs); 
-
-    // Display values
-    const display = Display(expression, totalInputs);
-    display.printFinalAnswers(finalAnswersArray)
-
-    return finalAnswersArray;
-}
+const solver = Solver(parsedExpression, solvables)
+const answers = solver.solve(totalCombinations)
+console.log(answers)
