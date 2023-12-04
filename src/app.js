@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors"
 import morgan from "morgan"
 import { __dirname } from "./utils/dirName.js";
-import main from "./solver/main.js";
+import { main } from "./solver/main.js";
 
 const app = express();
 const port = 3000;
