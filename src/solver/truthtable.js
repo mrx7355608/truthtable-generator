@@ -1,15 +1,18 @@
 const TruthTable = (expression) => {
-        const a = [];
-        const b = [];
-        const c = [];
-        const d = [];
+    const a = [];
+    const b = [];
+    const c = [];
+    const d = [];
 
     const getTotalInputs = () => {
+        // Detect alphabets in the given expression
         const inputsRegex = /[a-z]/ig;
         const inputsArr = expression.match(inputsRegex);
+        // Create a set to remove duplicate values
         const inputsSet = new Set(inputsArr);
-        const inputs = Array.from(inputsSet);
-        return inputs.length;
+
+        // Return the count of unique elements in the set
+        return inputsSet.size;
     }
 
     const getTotalCombintions = () => {
@@ -25,9 +28,19 @@ const TruthTable = (expression) => {
 
     const createBinaryCombinations = () => {
         const inputs = getTotalInputs();
+
         for (let i = 0; i < getTotalCombintions(); i++) {
+            // Converts the current value of "i" into
+            // a binary number, because the loop will run
+            // according to total possible combinations
+            // 0 -> 4   (for 2 inputs)
+            // 0 -> 7   (for 3 inputs)
+            // 0 -> 15  (for 4 inputs)
             const binaryNumber = decimalToBinary(i, inputs)
-            const splitBinaryNumber = binaryNumber.split("");
+
+            // Converts 000 -> [0, 0, 0], here the first value is a, 
+            // second is b and so on
+            const splitBinaryNumber = binaryNumber.split(""); 
             a.push(splitBinaryNumber[0]);
 
             if (inputs === 2) {
@@ -42,7 +55,12 @@ const TruthTable = (expression) => {
                 d.push(splitBinaryNumber[3]);
             }
         }
-        return [a, b, c, d]
+        return {
+            a,
+            b,
+            c,
+            d
+        }
     }
 
     return { 

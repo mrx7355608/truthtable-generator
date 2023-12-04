@@ -10,19 +10,10 @@ export const main = (expression) => {
     const parsedExpression = parser.parse();
     const values = truthTable.createBinaryCombinations();
 
-    const valueReplacer = ValueReplacer(parsedExpression, values[0], values[1], values[2], values[3]);
-    const totalCombinations = truthTable.getTotalCombintions();
-    const solvables = valueReplacer.replaceValues(totalCombinations);
-    console.log({ solvables });
+    const valueReplacer = ValueReplacer(parsedExpression, values)
+    const solvables = valueReplacer.replaceValues(truthTable.getTotalCombintions());
 
-    const solver = Solver(parsedExpression, solvables)
-    const answers = solver.solve(totalCombinations)
-    const data = {
-        a: values[0],
-        b: values[1].length > 0 ? values[1] : undefined,
-        c: values[2].length > 0 ? values[2] : undefined,
-        d: values[3].length > 0 ? values[3] : undefined,
-        answers
-    }
+    const solver = Solver(values, parsedExpression, solvables)
+    const data = solver.solve(truthTable.getTotalCombintions())
     return data;
 }
