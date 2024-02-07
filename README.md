@@ -1,4 +1,4 @@
-# sparkles: Truth Table Generator :sparkles:
+# :sparkles: Truth Table Generator :sparkles:
 It is an API that can generate truth tables of logical expressions.
 
 ### Introduction
