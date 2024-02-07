@@ -3,8 +3,12 @@
     "name": "truthtable-generator",
     "routes": [
         {
-            "src": "/(.*)",
+            "src": "/",
             "dest": "/"
+        },
+        {
+            "src": "/api/v1/solve-expression",
+            "dest": "/api/v1/solve-expression"
         }
     ]
 }

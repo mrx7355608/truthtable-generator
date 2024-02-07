@@ -14,7 +14,7 @@ const port = 3000;
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
-app.use("/", express.static(path.join(__dirname, "..", "..", "dist")));
+app.use(express.static(path.join(__dirname, "..", "..", "dist")));
 
 // #######################
 //         ROUTES
@@ -34,10 +34,6 @@ app.post("/api/v1/solve-expression", (req, res) => {
             error: "It seems that you enter an invalid expression",
         });
     }
-});
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "..", "dist", "index.html"));
 });
 
 app.listen(port, () => {
