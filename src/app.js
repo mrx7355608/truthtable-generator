@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import morgan from "morgan";
 import { __dirname } from "./utils/dirName.js";
 import { main } from "./solver/main.js";
@@ -14,11 +13,6 @@ const port = 3000;
 // TODO: add morgan, helmet and hpp middlewares
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(
-    cors({
-        origin: "http://localhost:5173",
-    }),
-);
 app.use(express.urlencoded({ extended: false }));
 app.use("/", express.static(path.join(__dirname, "..", "..", "dist")));
 
@@ -40,6 +34,10 @@ app.post("/api/v1/solve-expression", (req, res) => {
             error: "It seems that you enter an invalid expression",
         });
     }
+});
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "..", "dist", "index.html"));
 });
 
 app.listen(port, () => {
