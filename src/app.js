@@ -19,6 +19,10 @@ app.use(express.static(path.join(__dirname, "..", "..", "dist")));
 // #######################
 //         ROUTES
 // #######################
+
+app.get("/", (req, res) => {
+    return res.sendFile(path.join(__dirname, "..", "..", "dist", "index.html"));
+});
 app.post("/api/v1/solve-expression", (req, res) => {
     const { expression } = req.body;
     // TODO: add expression validation
