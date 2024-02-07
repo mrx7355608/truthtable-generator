@@ -1,4 +1,10 @@
 {
     "version": 2,
-    "name": "truthtable-generator"
+    "name": "truthtable-generator",
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/dist/$1"
+        }
+    ]
 }
