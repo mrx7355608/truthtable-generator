@@ -1,26 +1,26 @@
 {
-  "name": "truthtable-generator",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "type": "module",
-  "devDependencies": {
-    "@babel/core": "^7.23.3",
-    "@babel/preset-env": "^7.23.3",
-    "@babel/register": "^7.22.15",
-    "eslint": "^8.54.0",
-    "jest": "^29.7.0",
-    "nodemon": "^3.0.1"
-  },
-  "scripts": {
-    "dev": "nodemon src/app.js",
-    "solver": "nodemon src/solver/main.js",
-    "start": "node src/app.js"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "ejs": "^3.1.9",
-    "express": "^4.18.2",
-    "morgan": "^1.10.0"
-  }
+    "name": "truthtable-generator",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "type": "module",
+    "devDependencies": {
+        "@babel/core": "^7.23.3",
+        "@babel/preset-env": "^7.23.3",
+        "@babel/register": "^7.22.15",
+        "eslint": "^8.54.0",
+        "jest": "^29.7.0",
+        "nodemon": "^3.0.1"
+    },
+    "scripts": {
+        "dev": "nodemon src/app.js",
+        "solver": "nodemon src/solver/main.js",
+        "start": "node src/app.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "ejs": "^3.1.9",
+        "express": "^4.18.2",
+        "morgan": "^1.10.0"
+    }
 }

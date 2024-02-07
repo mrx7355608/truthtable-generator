@@ -1,9 +1,9 @@
-# :sparkles: Truth Table Generator :sparkles:
+# sparkles: Truth Table Generator :sparkles:
 It is an API that can generate truth tables of logical expressions.
 
 ### Introduction
 This project is basically a truth table generator, that can generate truth tables from logical expressions. Right now it just creates a table for the main expression
-The main purpose behind this project is to avoid making truth tables again and again in our DLD assignments :smirk_cat:. The web and mobile app will have a "copy to clipboard" button from where users can easily copy the whole table and paste it into their .docx files with ease!
+The main purpose behind this project is to avoid making truth tables again and again in our DLD assignments :smirk_cat:. The web will have a "copy to clipboard" button from where users can easily copy the whole table and paste it into their .docx files with ease!
 
 **This project is built using:**
 1. Nodejs (for core functionality)
